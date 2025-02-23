@@ -3,5 +3,8 @@
 
 .DS_Store
 
+# Ignore output files
+/outputs
+
 # personal todo list
 *todos*
