@@ -10,6 +10,7 @@ csv_handler = CSVHandler.new(file_path)
 records = csv_handler.read_records
 
 puts records.size
+puts records[4].emails
 
 # grouper = GroupingService.new(matching_strategy_name)
 # matcher.add_records(records)

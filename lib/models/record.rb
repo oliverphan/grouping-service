@@ -9,18 +9,13 @@ class Record
   private
 
   def load_data
-    @phones =
+    @emails =
       @raw_csv_row
-      .headers
-      .select { |header| header.to_s.downcase.start_with?('phone') }
-      .compact
-      .uniq
+      .fields(*@raw_csv_row.headers.grep(/^email/i))
+      .map { |header| Normalizer.normalize_emails(@raw_csv_row[header]) }
 
     @phones =
       @raw_csv_row
-      .headers
-      .select { |header| header.to_s.downcase.start_with?('email') }
-      .compact
-      .uniq
+      .fields(*@raw_csv_row.headers.grep(/^phone/i))
   end
 end
