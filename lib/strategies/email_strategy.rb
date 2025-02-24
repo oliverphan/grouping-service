@@ -3,7 +3,14 @@
 require_relative 'base_strategy'
 require_relative 'union_find'
 
+# Strategy for matching records based on email
 class EmailStrategy < BaseStrategy
+  ##
+  # Finds matches between records based on shared email addresses.
+  #
+  # @param records [Array<Record>] An array of records to process.
+  # @return [Array<Array<Record>>] Groups of matching records.
+  #
   def find_matches(records)
     union_find = UnionFind.new
 

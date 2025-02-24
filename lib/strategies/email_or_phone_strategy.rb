@@ -3,12 +3,19 @@
 require_relative 'base_strategy'
 require_relative 'union_find'
 
+# Strategy for matching records based on phone numbers or email addresses
 class EmailOrPhoneStrategy < BaseStrategy
+  ##
+  # Finds matches between records based on
+  # shared phone numbers OR email addresses
+  #
+  # @param records [Array<Record>] An array of records to process
+  # @return [Array<Array<Record>>] Groups of matching records
+  #
   def find_matches(records)
     union_find = UnionFind.new
     records.each { |record| union_find.add(record) }
 
-    # match by email
     records.each do |record|
       record.emails.each do |email|
         next if email.nil?
@@ -18,7 +25,6 @@ class EmailOrPhoneStrategy < BaseStrategy
       end
     end
 
-    # match by phone
     records.each do |record|
       record.phones.each do |phone|
         next if phone.nil?

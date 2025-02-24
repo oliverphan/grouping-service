@@ -1,26 +1,40 @@
 # frozen_string_literal: true
 
-# TODO: documentation
+# Implementation of the Union-Find (disjoint set) data structure
+# The current implementation is based on the Quick-Find algorithm with path compression
+# Inspired from https://d-halai.com/union-find-algorithms/
 class UnionFind
+  ##
+  # Initializes new instance of UnionFind
   def initialize
-    # key: record
-    # value: record (the representative)
+    # key: record, value: representative parent record
     @parent = {}
   end
 
-  # If the record is not there, set its parent to itself
+  ##
+  # Adds a new record if it is not already present
+  #
+  # @param record [Record]
   def add(record)
     @parent[record] = record unless @parent.key?(record)
   end
 
-  # set parent of record #2 to root of record 1
+  ##
+  # Merges two groups based on the representatives of record1 and record2
+  #
+  # @param record1 [Record]
+  # @param record2 [Record]
   def merge(record1, record2)
     parent1 = find(record1)
     parent2 = find(record2)
     @parent[parent2] = parent1 if parent1 != parent2
   end
 
-  # find the parent representative of the group
+  ##
+  # Find the representative parent of a record and its group
+  #
+  # @param record [Record]
+  # @return [Record]
   def find(record)
     return record unless @parent.key?(record)
 
@@ -31,6 +45,11 @@ class UnionFind
     @parent[record] = find(@parent[record])
   end
 
+  ##
+  # Return all groups
+  # Records that do not match any others are not placed into a group
+  #
+  # @return [Array<Array<Record>>]
   def groups
     result = {}
     @parent.each_key do |record|
