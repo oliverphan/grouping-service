@@ -3,18 +3,39 @@
 
 require_relative '../lib/csv_handler'
 require_relative '../lib/grouping_service'
+require 'optparse'
+
+BANNER = <<~BANNER
+  Usage: bin/group_people.rb [options] <file_path> <matching_strategy_name>
+
+  Available strategies:
+    - email            : Match records with the same email address
+    - phone           : Match records with the same phone number
+    - email_or_phone  : Match records sharing either email or phone
+
+  Example:
+    bin/group_people.rb input.csv email_or_phone
+BANNER
 
 def run(args)
-  # parse_options(args)
+  parse_options(args)
   validate(args)
   process(args)
 rescue StandardError => e
   handle_error(e)
 end
 
-def handle_error(error)
-  puts "Error: #{error.message}"
-  exit 1
+def parse_options(args)
+  @parser = OptionParser.new do |opts|
+    opts.banner = BANNER
+
+    opts.on('-h', '--help', 'Show this help message') do
+      puts opts
+      exit
+    end
+  end
+
+  @parser.parse!(args)
 end
 
 def validate(args)
@@ -44,6 +65,11 @@ def process(args)
   output_path = csv_handler.write_output(record_id_mapping)
 
   puts "Output written to: #{output_path}"
+end
+
+def handle_error(error)
+  puts "Error: #{error.message}"
+  exit 1
 end
 
 run(ARGV)
