@@ -32,7 +32,7 @@ class GroupingService
   #
   # @return [Hash] mapping of records to their id
   def group_records
-    return if @records.empty? # TODO: better handling instead of silent fail
+    return if @records.empty?
 
     groups = @matching_strategy.find_matches(@records)
 

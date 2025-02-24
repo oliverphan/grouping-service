@@ -16,11 +16,11 @@ RSpec.describe EmailOrPhoneStrategy do
     ]
   end
 
-  let(:record1) { Record.new(csv_data[0]) }
-  let(:record2) { Record.new(csv_data[1]) }
-  let(:record3) { Record.new(csv_data[2]) }
-  let(:record4) { Record.new(csv_data[3]) }
-  let(:record5) { Record.new(csv_data[4]) }
+  let(:record1) { Record.new(csv_data[0], 1) }
+  let(:record2) { Record.new(csv_data[1], 2) }
+  let(:record3) { Record.new(csv_data[2], 3) }
+  let(:record4) { Record.new(csv_data[3], 4) }
+  let(:record5) { Record.new(csv_data[4], 5) }
   let(:records) { [record1, record2, record3, record4, record5] }
 
   subject(:email_or_phone_strategy) { described_class.new }

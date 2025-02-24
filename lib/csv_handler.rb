@@ -19,8 +19,8 @@ class CSVHandler
   #
   # @return records [Array<Record>]
   def read_records
-    CSV.foreach(@file_path, headers: true) do |row|
-      @records << Record.new(row)
+    CSV.foreach(@file_path, headers: true).with_index do |row, index|
+      @records << Record.new(row, index)
     end
     @records
   end

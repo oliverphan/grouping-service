@@ -14,9 +14,9 @@ RSpec.describe EmailStrategy do
     ]
   end
 
-  let(:record1) { Record.new(csv_data[0]) }
-  let(:record2) { Record.new(csv_data[1]) }
-  let(:record3) { Record.new(csv_data[2]) }
+  let(:record1) { Record.new(csv_data[0], 1) }
+  let(:record2) { Record.new(csv_data[1], 2) }
+  let(:record3) { Record.new(csv_data[2], 3) }
   let(:records) { [record1, record2, record3] }
 
   subject(:email_strategy) { described_class.new }

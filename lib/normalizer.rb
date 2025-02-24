@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class holding logic to normalize input values from the csv
 class Normalizer
   def self.normalize_emails(email)
     return if email.nil? || email.empty?

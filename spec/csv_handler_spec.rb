@@ -13,7 +13,8 @@ RSpec.describe CSVHandler do
   describe '#read_records' do
     let(:output_record1) do
       Record.new(
-        CSV::Row.new(csv_headers, ['John', 'Smith', '(555) 123-4567', 'johns@home.com', 94_105])
+        CSV::Row.new(csv_headers, ['John', 'Smith', '(555) 123-4567', 'johns@home.com', 94_105]),
+        1
       )
     end
 
