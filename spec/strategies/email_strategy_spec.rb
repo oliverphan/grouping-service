@@ -23,7 +23,7 @@ RSpec.describe EmailStrategy do
 
   describe '#find_matches' do
     it 'groups records by shared email addresses' do
-      expect(email_strategy.find_matches(records)).to eq([[record1, record2]])
+      expect(email_strategy.find_matches(records)).to eq([[record1, record2], [record3]])
     end
   end
 end

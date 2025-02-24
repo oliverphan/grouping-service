@@ -47,7 +47,6 @@ class UnionFind
 
   ##
   # Return all groups
-  # Records that do not match any others are not placed into a group
   #
   # @return [Array<Array<Record>>]
   def groups
@@ -57,6 +56,6 @@ class UnionFind
       result[parent] ||= []
       result[parent] << record
     end
-    result.values.select { |group| group.size > 1 }
+    result.values
   end
 end

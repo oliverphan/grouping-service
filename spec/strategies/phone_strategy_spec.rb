@@ -23,7 +23,7 @@ RSpec.describe PhoneStrategy do
 
   describe '#find_matches' do
     it 'groups records by shared phone numbers' do
-      expect(phone_strategy.find_matches(records)).to eq([[record1, record2]])
+      expect(phone_strategy.find_matches(records)).to eq([[record1, record2], [record3]])
     end
   end
 end
